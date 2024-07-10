@@ -61,7 +61,7 @@ def get_data() -> pd.DataFrame:
     except requests.RequestException as e:  # Catch errors related to the request itself
         print(f"Request failed: {e}")  # Print the error message
         return pd.DataFrame()  # Return an empty DataFrame if the request fails
-
+e
 df = get_data()
 ## DO NOT MODIFY THIS BLOCK
 
@@ -75,6 +75,7 @@ number_of_datasets = None
 text = f'There are {number_of_datasets} published datasets'
 st.write(text)
 
+
 number_of_organs = None
 text = f'There are {number_of_organs} organs'
 st.write(text)
@@ -84,6 +85,26 @@ st.write(text)
 
 text = '### Data access level'
 st.write(text)
+# Count how many times each access level appears in the data
+data_counts = df['data_access_level'].value_counts()
+
+# Start making a pie chart
+# We plot a pie chart using the counts we just calculated
+plt.pie(
+    data_counts,  # The data to plot, which are the counts of each access level
+    labels=data_counts.index,  # Labels for each pie slice, taken from the data (each type of access level)
+    autopct='%1.1f%%',  # Shows percentages on the pie chart, formatted to one decimal place
+    startangle=90  # Starts the first slice of the pie at the top (90 degrees on the circle)
+)
+
+# Make sure the pie chart is a perfect circle
+plt.axis('equal')  # This command ensures the pie chart is not oval but a perfect circle
+
+# Give the pie chart a title
+plt.title('Distribution of Data Access Levels')
+
+# Display the pie chart on the screen
+plt.show()  # This command actually shows the pie chart we just created in a window
 
 text = '### Dataset types'
 st.write(text)
