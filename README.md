@@ -1,5 +1,7 @@
 # FAIR Assessment of HuBMAP published data
 
+## Abstract
+
 ---
 Copyright © 2024 Pittsburgh Supercomputing Center. All Rights Reserved.
 
