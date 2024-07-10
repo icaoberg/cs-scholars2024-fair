@@ -11,7 +11,7 @@ from datetime import datetime
 title = '# Add Title'
 st.write(title)
 
-authors = 'Add authors'
+authors = 'Prince, A; Tinajero, A; Perez, L; Ku, J; Li, X; Ricano, J; Fisher, M; Edmond, J; Mitchell, A; McLeod, A; Cao-Berg, I; Wong, A;'
 st.write(authors)
 
 today = 'Today''s date'
