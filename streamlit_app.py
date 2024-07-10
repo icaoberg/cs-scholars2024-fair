@@ -96,5 +96,9 @@ text = '''
 ### Method
 ### Setup
 ### Assessment
+---
+Copyright © 2024 Carnegie Mellon University. All Rights Reserved.
+
+The [Biomedical Applications Group](https://www.psc.edu/biomedical-applications/) at the [Pittsburgh Supercomputing Center](http://www.psc.edu) in the [Mellon College of Science](https://www.cmu.edu/mcs/) at [Carnegie Mellon University](http://www.cmu.edu) and the Data Science Group at CS Scholars 2024.
 '''
 st.write(text)
