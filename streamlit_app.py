@@ -64,7 +64,7 @@ def get_data() -> pd.DataFrame:
 
 df = get_data()
 ## DO NOT MODIFY THIS BLOCK
-https://colab.research.google.com/drive/1d3oI7yv0dNpCDYqTXoiXUdpH7sGPOhCd#scrollTo=vUFonM2g2Zh3&line=2&uniqifier=1
+
 text = '## Assessment of published data'
 st.write(text)
 
