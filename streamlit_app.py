@@ -153,26 +153,31 @@ st.pyplot(fig)
 
 text = '### Data access level'
 st.write(text)
+
 # Count how many times each access level appears in the data
 data_counts = df['data_access_level'].value_counts()
 
-# Start making a pie chart
-# We plot a pie chart using the counts we just calculated
-plt.pie(
-    data_counts,  # The data to plot, which are the counts of each access level
-    labels=data_counts.index,  # Labels for each pie slice, taken from the data (each type of access level)
-    autopct='%1.1f%%',  # Shows percentages on the pie chart, formatted to one decimal place
-    startangle=90  # Starts the first slice of the pie at the top (90 degrees on the circle)
-)
 
-# Make sure the pie chart is a perfect circle
-plt.axis('equal')  # This command ensures the pie chart is not oval but a perfect circle
+# Count how many times each access level appears in the data
+data_counts = df['data_access_level'].value_counts()
 
-# Give the pie chart a title
-plt.title('Distribution of Data Access Levels')
+# Start Streamlit app
+st.title('Data Access Levels Pie Chart')
 
-# Display the pie chart on the screen
-plt.show()  # This command actually shows the pie chart we just created in a window
+# Display text using st.write()
+st.write('### Distribution of Data Access Levels')
+
+# Plot pie chart using matplotlib and display with st.pyplot()
+fig, ax = plt.subplots()
+wedges, texts, autotexts = ax.pie(data_counts,
+                                  labels=data_counts.index,
+                                  autopct='%1.1f%%',
+                                  startangle=90)
+ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+ax.set_title('Distribution of Data Access Levels')
+
+# Display the plot in Streamlit
+st.pyplot(fig)
 
 text = '### Dataset types'
 st.write(text)
@@ -191,4 +196,3 @@ Copyright © 2024 Carnegie Mellon University. All Rights Reserved.
 The [Biomedical Applications Group](https://www.psc.edu/biomedical-applications/) at the [Pittsburgh Supercomputing Center](http://www.psc.edu) in the [Mellon College of Science](https://www.cmu.edu/mcs/) at [Carnegie Mellon University](http://www.cmu.edu) and the Data Science Group at CS Scholars 2024.
 '''
 st.write(text)
-
