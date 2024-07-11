@@ -115,9 +115,6 @@ st.pyplot(fig)
 # Count how many times each boolean appears in the data
 data_counts = df['has_data'].value_counts()
 
-# Start Streamlit app
-st.title('Has data')
-
 # Plot pie chart using Streamlit
 fig, ax = plt.subplots()
 wedges, texts, autotexts = ax.pie(data_counts,
@@ -125,7 +122,7 @@ wedges, texts, autotexts = ax.pie(data_counts,
                                   autopct='%1.1f%%',
                                   startangle=90)
 ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
-ax.set_title('Whether or Not the Dataset Has Data')
+ax.set_title('Has data')
 
 # Display the plot in Streamlit
 st.pyplot(fig)
@@ -135,9 +132,6 @@ st.pyplot(fig)
 # Count how many times each boolean appears in the data
 data_counts = df['has_contributors'].value_counts()
 
-# Start Streamlit app
-st.title('Has Contributors')
-
 # Plot pie chart using Streamlit
 fig, ax = plt.subplots()
 wedges, texts, autotexts = ax.pie(data_counts,
@@ -145,7 +139,7 @@ wedges, texts, autotexts = ax.pie(data_counts,
                                   autopct='%1.1f%%',
                                   startangle=90)
 ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
-ax.set_title('Whether or Not the Dataset Has a Contributor')
+ax.set_title('Has Contributors')
 
 # Display the plot in Streamlit
 st.pyplot(fig)
