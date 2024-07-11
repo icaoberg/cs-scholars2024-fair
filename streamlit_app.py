@@ -5,13 +5,13 @@ import matplotlib.pyplot as plt
 from pprint import pprint
 from datetime import datetime
 
-# logo_url = ''
-# st.image(logo_url)
+logo_url = 'https://hubmapconsortium.org/wp-content/uploads/2019/01/HuBMAP-Logo-Color.png'
+st.image(logo_url)
 
-title = '# Add Title'
+title = 'FAIR Assessment of HuBMAP Data'
 st.write(title)
 
-authors = 'Add authors'
+authors = 'Prince, A. Tinajero, A. Perez, L. Ku, J. Li, X. Ricano, J. Fisher, M. Edmond, J. Mitchell, A. McLeod, A. Wong, A. Cao-Berg, I.'
 st.write(authors)
 
 today = 'Today''s date'
@@ -107,6 +107,30 @@ ax.set_title('Group names')  # Add title to the pie chart
 # Display plot using Streamlit
 st.pyplot(fig)
 
+st.write(df)
+
+#Has_contributor plot----------------------------------------------
+# Count how many times each boolean appears in the data
+data_counts = df['has_contributors'].value_counts()
+
+# Start making a pie chart
+# We plot a pie chart using the counts we just calculated
+plt.pie(
+    data_counts,  # The data to plot, which are the counts of each access level
+    labels=data_counts.index,  # Labels for each pie slice, taken from the data (each type of access level)
+    autopct='%1.1f%%',  # Shows percentages on the pie chart, formatted to one decimal place
+    startangle=90  # Starts the first slice of the pie at the top (90 degrees on the circle)
+)
+
+# Make sure the pie chart is a perfect circle
+plt.axis('equal')  # This command ensures the pie chart is not oval but a perfect circle
+
+# Give the pie chart a title
+plt.title('Whether or Not the Dataset Has a Contributor')
+
+# Display the pie chart on the screen
+plt.show()  # This command actually shows the pie chart we just created in a window
+#-----------------------------------------------------------
 
 text = '### Data access level'
 st.write(text)
@@ -122,5 +146,10 @@ text = '''
 ### Method
 ### Setup
 ### Assessment
+---
+Copyright © 2024 Carnegie Mellon University. All Rights Reserved.
+
+The [Biomedical Applications Group](https://www.psc.edu/biomedical-applications/) at the [Pittsburgh Supercomputing Center](http://www.psc.edu) in the [Mellon College of Science](https://www.cmu.edu/mcs/) at [Carnegie Mellon University](http://www.cmu.edu) and the Data Science Group at CS Scholars 2024.
 '''
 st.write(text)
+
