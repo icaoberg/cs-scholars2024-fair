@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 from pprint import pprint
 from datetime import datetime
 
-# logo_url = ''
-# st.image(logo_url)
+logo_url = 'https://hubmapconsortium.org/wp-content/uploads/2019/01/HuBMAP-Logo-Color.png'
+st.image(logo_url)
 
 title = 'FAIR Assessment of HuBMAP Data'
 st.write(title)
