@@ -82,6 +82,9 @@ st.write(text)
 text = '### Datasets'
 st.write(text)
 
+#print table
+st.write(df)
+
 # Calculate value counts and get the top 10 research group names
 value_counts = df['group_name'].value_counts()
 top_10_value_counts = value_counts.nlargest(10)
@@ -103,11 +106,8 @@ wedges, texts, autotexts = ax.pie(top_10_value_counts,
 
 ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
 ax.set_title('Group names')  # Add title to the pie chart
-
 # Display plot using Streamlit
 st.pyplot(fig)
-
-st.write(df)
 
 #Has_contributor plot----------------------------------------------
 # Count how many times each boolean appears in the data
