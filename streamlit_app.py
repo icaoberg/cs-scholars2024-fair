@@ -89,7 +89,7 @@ st.write(df)
 value_counts = df['group_name'].value_counts()
 top_10_value_counts = value_counts.nlargest(10)
 
---------------------------------------------------------------------
+# --------------------------------------------------------------------
 # Calculate "Others" category
 others_count = value_counts.iloc[10:].sum()
 if others_count > 0:
