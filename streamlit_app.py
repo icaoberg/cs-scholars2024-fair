@@ -8,10 +8,10 @@ from datetime import datetime
 # logo_url = ''
 # st.image(logo_url)
 
-title = '# Add Title'
+title = 'FAIR Assessment of HuBMAP Data'
 st.write(title)
 
-authors = 'Add authors'
+authors = 'Prince, A. Tinajero, A. Perez, L. Ku, J. Li, X. Ricano, J. Fisher, M. Edmond, J. Mitchell, A. McLeod, A. Wong, A. Cao-Berg, I.'
 st.write(authors)
 
 today = 'Today''s date'
@@ -96,5 +96,9 @@ text = '''
 ### Method
 ### Setup
 ### Assessment
+---
+Copyright © 2024 Carnegie Mellon University. All Rights Reserved.
+
+The [Biomedical Applications Group](https://www.psc.edu/biomedical-applications/) at the [Pittsburgh Supercomputing Center](http://www.psc.edu) in the [Mellon College of Science](https://www.cmu.edu/mcs/) at [Carnegie Mellon University](http://www.cmu.edu) and the Data Science Group at CS Scholars 2024.
 '''
 st.write(text)
