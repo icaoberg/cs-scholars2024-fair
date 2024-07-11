@@ -61,7 +61,7 @@ def get_data() -> pd.DataFrame:
     except requests.RequestException as e:  # Catch errors related to the request itself
         print(f"Request failed: {e}")  # Print the error message
         return pd.DataFrame()  # Return an empty DataFrame if the request fails
-
+e
 df = get_data()
 ## DO NOT MODIFY THIS BLOCK
 
@@ -74,6 +74,7 @@ st.write(text)
 number_of_datasets = None
 text = f'There are {number_of_datasets} published datasets'
 st.write(text)
+
 
 number_of_organs = None
 text = f'There are {number_of_organs} organs'
@@ -153,6 +154,31 @@ st.pyplot(fig)
 text = '### Data access level'
 st.write(text)
 
+# Count how many times each access level appears in the data
+data_counts = df['data_access_level'].value_counts()
+
+
+# Count how many times each access level appears in the data
+data_counts = df['data_access_level'].value_counts()
+
+# Start Streamlit app
+st.title('Data Access Levels Pie Chart')
+
+# Display text using st.write()
+st.write('### Distribution of Data Access Levels')
+
+# Plot pie chart using matplotlib and display with st.pyplot()
+fig, ax = plt.subplots()
+wedges, texts, autotexts = ax.pie(data_counts,
+                                  labels=data_counts.index,
+                                  autopct='%1.1f%%',
+                                  startangle=90)
+ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+ax.set_title('Distribution of Data Access Levels')
+
+# Display the plot in Streamlit
+st.pyplot(fig)
+
 text = '### Dataset types'
 st.write(text)
 
@@ -170,4 +196,3 @@ Copyright © 2024 Carnegie Mellon University. All Rights Reserved.
 The [Biomedical Applications Group](https://www.psc.edu/biomedical-applications/) at the [Pittsburgh Supercomputing Center](http://www.psc.edu) in the [Mellon College of Science](https://www.cmu.edu/mcs/) at [Carnegie Mellon University](http://www.cmu.edu) and the Data Science Group at CS Scholars 2024.
 '''
 st.write(text)
-
