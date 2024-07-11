@@ -82,29 +82,55 @@ st.write(text)
 text = '### Datasets'
 st.write(text)
 
+#print table
 st.write(df)
+
+# Calculate value counts and get the top 10 research group names
+value_counts = df['group_name'].value_counts()
+top_10_value_counts = value_counts.nlargest(10)
+
+# Calculate "Others" category
+others_count = value_counts.iloc[10:].sum()
+if others_count > 0:
+    top_10_value_counts['Others'] = others_count
+
+# Plotting in Streamlit
+fig, ax = plt.subplots(figsize=(10, 8))
+wedges, texts, autotexts = ax.pie(top_10_value_counts,
+                                  autopct='%1.1f%%',  # Add percentages
+                                  explode=[0.1 if value == max(top_10_value_counts) else 0 for value in top_10_value_counts],  # Explode largest slice
+                                  colors=plt.cm.tab20.colors[:len(top_10_value_counts)],  # Use tab20 colormap for colors
+                                  shadow=True,  # Add shadow
+                                  startangle=90,  # Rotate start angle
+                                  textprops=dict(color="w"))  # Text color for percentages
+
+ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+ax.set_title('Group names')  # Add title to the pie chart
+# Display plot using Streamlit
+st.pyplot(fig)
 
 #Has_contributor plot----------------------------------------------
 # Count how many times each boolean appears in the data
 data_counts = df['has_contributors'].value_counts()
 
-# Start making a pie chart
-# We plot a pie chart using the counts we just calculated
-plt.pie(
-    data_counts,  # The data to plot, which are the counts of each access level
-    labels=data_counts.index,  # Labels for each pie slice, taken from the data (each type of access level)
-    autopct='%1.1f%%',  # Shows percentages on the pie chart, formatted to one decimal place
-    startangle=90  # Starts the first slice of the pie at the top (90 degrees on the circle)
-)
+#Has_contributor plot----------------------------------------------
+# Count how many times each boolean appears in the data
+data_counts = df['has_contributors'].value_counts()
 
-# Make sure the pie chart is a perfect circle
-plt.axis('equal')  # This command ensures the pie chart is not oval but a perfect circle
+# Start Streamlit app
+st.title('Has Contributors')
 
-# Give the pie chart a title
-plt.title('Whether or Not the Dataset Has a Contributor')
+# Plot pie chart using Streamlit
+fig, ax = plt.subplots()
+wedges, texts, autotexts = ax.pie(data_counts,
+                                  labels=data_counts.index.map({True: 'Yes', False: 'No'}),
+                                  autopct='%1.1f%%',
+                                  startangle=90)
+ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+ax.set_title('Whether or Not the Dataset Has a Contributor')
 
-# Display the pie chart on the screen
-plt.show()  # This command actually shows the pie chart we just created in a window
+# Display the plot in Streamlit
+st.pyplot(fig)
 #-----------------------------------------------------------
 
 text = '### Data access level'
