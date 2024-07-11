@@ -155,12 +155,7 @@ data_counts = df['data_access_level'].value_counts()
 # Count how many times each access level appears in the data
 data_counts = df['data_access_level'].value_counts()
 
-# Start Streamlit app
-st.title('Data Access Levels Pie Chart')
-
 # Display text using st.write()
-st.write('### Distribution of Data Access Levels')
-
 # Plot pie chart using matplotlib and display with st.pyplot()
 fig, ax = plt.subplots()
 wedges, texts, autotexts = ax.pie(data_counts,
