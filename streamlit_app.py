@@ -113,23 +113,24 @@ st.pyplot(fig)
 # Count how many times each boolean appears in the data
 data_counts = df['has_contributors'].value_counts()
 
-# Start making a pie chart
-# We plot a pie chart using the counts we just calculated
-plt.pie(
-    data_counts,  # The data to plot, which are the counts of each access level
-    labels=data_counts.index,  # Labels for each pie slice, taken from the data (each type of access level)
-    autopct='%1.1f%%',  # Shows percentages on the pie chart, formatted to one decimal place
-    startangle=90  # Starts the first slice of the pie at the top (90 degrees on the circle)
-)
+#Has_contributor plot----------------------------------------------
+# Count how many times each boolean appears in the data
+data_counts = df['has_contributors'].value_counts()
 
-# Make sure the pie chart is a perfect circle
-plt.axis('equal')  # This command ensures the pie chart is not oval but a perfect circle
+# Start Streamlit app
+st.title('Has Contributors')
 
-# Give the pie chart a title
-plt.title('Whether or Not the Dataset Has a Contributor')
+# Plot pie chart using Streamlit
+fig, ax = plt.subplots()
+wedges, texts, autotexts = ax.pie(data_counts,
+                                  labels=data_counts.index.map({True: 'Yes', False: 'No'}),
+                                  autopct='%1.1f%%',
+                                  startangle=90)
+ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+ax.set_title('Whether or Not the Dataset Has a Contributor')
 
-# Display the pie chart on the screen
-plt.show()  # This command actually shows the pie chart we just created in a window
+# Display the plot in Streamlit
+st.pyplot(fig)
 #-----------------------------------------------------------
 
 text = '### Data access level'
