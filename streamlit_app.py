@@ -64,7 +64,7 @@ def get_data() -> pd.DataFrame:
 
 df = get_data()
 ## DO NOT MODIFY THIS BLOCK
-
+https://colab.research.google.com/drive/1d3oI7yv0dNpCDYqTXoiXUdpH7sGPOhCd#scrollTo=vUFonM2g2Zh3&line=2&uniqifier=1
 text = '## Assessment of published data'
 st.write(text)
 
@@ -89,6 +89,7 @@ st.write(df)
 value_counts = df['group_name'].value_counts()
 top_10_value_counts = value_counts.nlargest(10)
 
+--------------------------------------------------------------------
 # Calculate "Others" category
 others_count = value_counts.iloc[10:].sum()
 if others_count > 0:
@@ -109,11 +110,27 @@ ax.set_title('Group names')  # Add title to the pie chart
 # Display plot using Streamlit
 st.pyplot(fig)
 
-#Has_contributor plot----------------------------------------------
+#has_data plot------------------------------------------------
 # Count how many times each boolean appears in the data
-data_counts = df['has_contributors'].value_counts()
+data_counts = df['has_data'].value_counts()
 
-#Has_contributor plot----------------------------------------------
+# Start Streamlit app
+st.title('Has data')
+
+# Plot pie chart using Streamlit
+fig, ax = plt.subplots()
+wedges, texts, autotexts = ax.pie(data_counts,
+                                  labels=data_counts.index.map({True: 'Yes', False: 'No'}),
+                                  autopct='%1.1f%%',
+                                  startangle=90)
+ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+ax.set_title('Whether or Not the Dataset Has Data')
+
+# Display the plot in Streamlit
+st.pyplot(fig)
+#-----------------------------------------------------------
+
+#has_contributors plot----------------------------------------------
 # Count how many times each boolean appears in the data
 data_counts = df['has_contributors'].value_counts()
 
