@@ -81,7 +81,7 @@ st.write(text)
 
 text = '### Datasets'
 st.write(text)
-
+st.write(df)
 text = '### Data access level'
 st.write(text)
 
