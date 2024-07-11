@@ -91,19 +91,22 @@ others_count = value_counts.iloc[10:].sum()
 if others_count > 0:
     top_10_value_counts['Others'] = others_count
 
-# Plot pie chart
-plt.figure(figsize=(10, 8))
-plt.pie(top_10_value_counts,
-        labels=top_10_value_counts.index,
-        autopct='%1.1f%%',  # Add percentages
-        explode=[0.1 if value == max(top_10_value_counts) else 0 for value in top_10_value_counts],  # Explode largest slice
-        colors=plt.cm.tab20.colors[:len(top_10_value_counts)],  # Use tab20 colormap for colors
-        shadow=True,  # Add shadow
-        startangle=90)  # Rotate start angle
+# Plotting in Streamlit
+fig, ax = plt.subplots(figsize=(10, 8))
+wedges, texts, autotexts = ax.pie(top_10_value_counts,
+                                  autopct='%1.1f%%',  # Add percentages
+                                  explode=[0.1 if value == max(top_10_value_counts) else 0 for value in top_10_value_counts],  # Explode largest slice
+                                  colors=plt.cm.tab20.colors[:len(top_10_value_counts)],  # Use tab20 colormap for colors
+                                  shadow=True,  # Add shadow
+                                  startangle=90,  # Rotate start angle
+                                  textprops=dict(color="w"))  # Text color for percentages
 
-# Title and display
-plt.title('Group Names')
-plt.show()
+ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+ax.set_title('Group names')  # Add title to the pie chart
+
+# Display plot using Streamlit
+st.pyplot(fig)
+
 
 text = '### Data access level'
 st.write(text)
