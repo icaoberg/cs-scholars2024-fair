@@ -82,6 +82,8 @@ st.write(text)
 text = '### Datasets'
 st.write(text)
 
+st.write(df)
+
 #Has_contributor plot----------------------------------------------
 # Count how many times each boolean appears in the data
 data_counts = df['has_contributors'].value_counts()
