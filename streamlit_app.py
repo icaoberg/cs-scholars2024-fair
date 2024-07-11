@@ -5,13 +5,13 @@ import matplotlib.pyplot as plt
 from pprint import pprint
 from datetime import datetime
 
-# logo_url = ''
-# st.image(logo_url)
+logo_url = 'https://hubmapconsortium.org/wp-content/uploads/2019/01/HuBMAP-Logo-Color.png'
+st.image(logo_url)
 
-title = '# Add Title'
+title = 'FAIR Assessment of HuBMAP Data'
 st.write(title)
 
-authors = 'Add authors'
+authors = 'Prince, A. Tinajero, A. Perez, L. Ku, J. Li, X. Ricano, J. Fisher, M. Edmond, J. Mitchell, A. McLeod, A. Wong, A. Cao-Berg, I.'
 st.write(authors)
 
 today = 'Today''s date'
@@ -82,6 +82,57 @@ st.write(text)
 text = '### Datasets'
 st.write(text)
 
+#print table
+st.write(df)
+
+# Calculate value counts and get the top 10 research group names
+value_counts = df['group_name'].value_counts()
+top_10_value_counts = value_counts.nlargest(10)
+
+# Calculate "Others" category
+others_count = value_counts.iloc[10:].sum()
+if others_count > 0:
+    top_10_value_counts['Others'] = others_count
+
+# Plotting in Streamlit
+fig, ax = plt.subplots(figsize=(10, 8))
+wedges, texts, autotexts = ax.pie(top_10_value_counts,
+                                  autopct='%1.1f%%',  # Add percentages
+                                  explode=[0.1 if value == max(top_10_value_counts) else 0 for value in top_10_value_counts],  # Explode largest slice
+                                  colors=plt.cm.tab20.colors[:len(top_10_value_counts)],  # Use tab20 colormap for colors
+                                  shadow=True,  # Add shadow
+                                  startangle=90,  # Rotate start angle
+                                  textprops=dict(color="w"))  # Text color for percentages
+
+ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+ax.set_title('Group names')  # Add title to the pie chart
+# Display plot using Streamlit
+st.pyplot(fig)
+
+#Has_contributor plot----------------------------------------------
+# Count how many times each boolean appears in the data
+data_counts = df['has_contributors'].value_counts()
+
+#Has_contributor plot----------------------------------------------
+# Count how many times each boolean appears in the data
+data_counts = df['has_contributors'].value_counts()
+
+# Start Streamlit app
+st.title('Has Contributors')
+
+# Plot pie chart using Streamlit
+fig, ax = plt.subplots()
+wedges, texts, autotexts = ax.pie(data_counts,
+                                  labels=data_counts.index.map({True: 'Yes', False: 'No'}),
+                                  autopct='%1.1f%%',
+                                  startangle=90)
+ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+ax.set_title('Whether or Not the Dataset Has a Contributor')
+
+# Display the plot in Streamlit
+st.pyplot(fig)
+#-----------------------------------------------------------
+
 text = '### Data access level'
 st.write(text)
 
@@ -96,5 +147,10 @@ text = '''
 ### Method
 ### Setup
 ### Assessment
+---
+Copyright © 2024 Carnegie Mellon University. All Rights Reserved.
+
+The [Biomedical Applications Group](https://www.psc.edu/biomedical-applications/) at the [Pittsburgh Supercomputing Center](http://www.psc.edu) in the [Mellon College of Science](https://www.cmu.edu/mcs/) at [Carnegie Mellon University](http://www.cmu.edu) and the Data Science Group at CS Scholars 2024.
 '''
 st.write(text)
+
