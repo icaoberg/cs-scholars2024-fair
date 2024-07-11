@@ -82,6 +82,29 @@ st.write(text)
 text = '### Datasets'
 st.write(text)
 
+# Calculate value counts and get the top 10 research group names
+value_counts = df['group_name'].value_counts()
+top_10_value_counts = value_counts.nlargest(10)
+
+# Calculate "Others" category
+others_count = value_counts.iloc[10:].sum()
+if others_count > 0:
+    top_10_value_counts['Others'] = others_count
+
+# Plot pie chart
+plt.figure(figsize=(10, 8))
+plt.pie(top_10_value_counts,
+        labels=top_10_value_counts.index,
+        autopct='%1.1f%%',  # Add percentages
+        explode=[0.1 if value == max(top_10_value_counts) else 0 for value in top_10_value_counts],  # Explode largest slice
+        colors=plt.cm.tab20.colors[:len(top_10_value_counts)],  # Use tab20 colormap for colors
+        shadow=True,  # Add shadow
+        startangle=90)  # Rotate start angle
+
+# Title and display
+plt.title('Group Names')
+plt.show()
+
 text = '### Data access level'
 st.write(text)
 
