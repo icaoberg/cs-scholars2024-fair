@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import requests
+import numpy as np
 import matplotlib.pyplot as plt
 from pprint import pprint
 from datetime import datetime
