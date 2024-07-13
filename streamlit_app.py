@@ -9,7 +9,7 @@ from datetime import datetime
 logo_url = 'https://hubmapconsortium.org/wp-content/uploads/2019/01/HuBMAP-Logo-Color.png'
 st.image(logo_url)
 
-title = 'FAIR Assessment of HuBMAP Data'
+title = '# Self-assessment of HuBMAP published resources'
 st.write(title)
 
 authors = 'Prince, A. Tinajero, A. Perez, L. Ku, J. Li, X. Ricano, J. Fisher, M. Edmond, J. Mitchell, A. McLeod, A. Wong, A. Cao-Berg, I.'
