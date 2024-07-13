@@ -107,7 +107,29 @@ wedges, texts, autotexts = ax.pie(top_10_value_counts,
                                   textprops=dict(color="w"))  # Text color for percentages
 
 ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+# Create custom legend
+legend_labels = top_10_value_counts.index.tolist()
+ax.legend(wedges, legend_labels, title="Groups", loc="center left", bbox_to_anchor=(1, 0, 0.5, 1))
+
 ax.set_title('Group names')  # Add title to the pie chart
+# Display plot using Streamlit
+st.pyplot(fig)
+# --------------------------------------------------------------------
+
+# --------------------------------------------------------------------
+from wordcloud import WordCloud
+
+text = ' '.join(df['group_name'].tolist())
+
+# Create the Word Cloud
+wordcloud = WordCloud(width=800, height=400, background_color='white').generate(text)
+
+# Create a figure
+fig, ax = plt.subplots(figsize=(10, 5))  # Create a figure of size 10 inches by 5 inches
+
+# Display the Word Cloud
+ax.imshow(wordcloud, interpolation='bilinear')  # Display the word cloud image
+ax.axis("off")  # Turn off the axis because we don't need it for the word cloud
 # Display plot using Streamlit
 st.pyplot(fig)
 # --------------------------------------------------------------------
@@ -119,7 +141,7 @@ data_counts = df['has_data'].value_counts()
 # Plot pie chart using Streamlit
 fig, ax = plt.subplots()
 wedges, texts, autotexts = ax.pie(data_counts,
-                                  labels=data_counts.index.map({True: 'Yes', False: 'No'}),
+                                  labels=data_counts.index,
                                   autopct='%1.1f%%',
                                   startangle=90)
 ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
