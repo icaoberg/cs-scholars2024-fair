@@ -123,7 +123,7 @@ from wordcloud import WordCloud
 text = ' '.join(df['group_name'].str.replace(' ', '_').tolist())
 
 # Create the Word Cloud
-wordcloud = WordCloud(width=200, height=200, background_color='black',  collocations = False,).generate(text)
+wordcloud = WordCloud(width=200, height=200, background_color='white',  collocations = False,).generate(text)
 
 def grey_color_func(word, font_size, position,orientation,random_state=None, **kwargs):
     return("hsl(230,100%%, %d%%)" % np.random.randint(49,51))
