@@ -122,7 +122,7 @@ from wordcloud import WordCloud
 text = ' '.join(df['group_name'].str.replace(' ', '_').tolist())
 
 # Create the Word Cloud
-wordcloud = WordCloud(width=200, height=200, background_color='white',  collocations = False,).generate(text)
+wordcloud = WordCloud(width=200, height=200, background_color='black',  collocations = False,).generate(text)
 
 # Create a figure
 fig, ax = plt.subplots(figsize=(2, 3))  # Create a figure of size 10 inches by 5 inches
