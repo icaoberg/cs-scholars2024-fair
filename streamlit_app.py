@@ -132,7 +132,7 @@ def grey_color_func(word, font_size, position,orientation,random_state=None, **k
 wordcloud.recolor(color_func = grey_color_func)
 
 # Create a figure
-fig, ax = plt.subplots(figsize=(5, 5))  # Create a figure of size 10 inches by 5 inches
+fig, ax = plt.subplots(figsize=(25, 25))  # Create a figure of size 10 inches by 5 inches
 
 # Display the Word Cloud
 ax.imshow(wordcloud, interpolation='bilinear')  # Display the word cloud image
