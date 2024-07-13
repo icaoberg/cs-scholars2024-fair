@@ -14,7 +14,7 @@ st.write(title)
 authors = 'Prince, A. Tinajero, A. Perez, L. Ku, J. Li, X. Ricano, J. Fisher, M. Edmond, J. Mitchell, A. McLeod, A. Wong, A. Cao-Berg, I.'
 st.write(authors)
 
-today = 'Today''s date'
+today = datetime.now().strftime('%Y-%m-%d')
 st.write(today)
 
 intro = '''
