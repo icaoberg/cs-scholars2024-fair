@@ -87,11 +87,10 @@ st.write(text)
 #print table
 st.write(df)
 
+# --------------------------------------------------------------------
 # Calculate value counts and get the top 10 research group names
 value_counts = df['group_name'].value_counts()
 top_10_value_counts = value_counts.nlargest(10)
-
-# --------------------------------------------------------------------
 # Calculate "Others" category
 others_count = value_counts.iloc[10:].sum()
 if others_count > 0:
@@ -111,8 +110,9 @@ ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
 ax.set_title('Group names')  # Add title to the pie chart
 # Display plot using Streamlit
 st.pyplot(fig)
+# --------------------------------------------------------------------
 
-#has_data plot------------------------------------------------
+# --------------------------------------------------------------------
 # Count how many times each boolean appears in the data
 data_counts = df['has_data'].value_counts()
 
@@ -127,9 +127,9 @@ ax.set_title('Has data')
 
 # Display the plot in Streamlit
 st.pyplot(fig)
-#-----------------------------------------------------------
+# --------------------------------------------------------------------
 
-#has_contributors plot----------------------------------------------
+# --------------------------------------------------------------------
 # Count how many times each boolean appears in the data
 data_counts = df['has_contributors'].value_counts()
 
@@ -144,11 +144,12 @@ ax.set_title('Has Contributors')
 
 # Display the plot in Streamlit
 st.pyplot(fig)
-#-----------------------------------------------------------
+# --------------------------------------------------------------------
 
 text = '### Data access level'
 st.write(text)
 
+# --------------------------------------------------------------------
 # Count how many times each access level appears in the data
 data_counts = df['data_access_level'].value_counts()
 
@@ -168,6 +169,7 @@ ax.set_title('Distribution of Data Access Levels')
 
 # Display the plot in Streamlit
 st.pyplot(fig)
+# --------------------------------------------------------------------
 
 text = '### Dataset types'
 st.write(text)
