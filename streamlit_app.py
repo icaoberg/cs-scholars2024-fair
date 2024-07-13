@@ -123,7 +123,7 @@ from wordcloud import WordCloud
 text = ' '.join(df['group_name'].str.replace(' ', '_').tolist())
 
 # Create the Word Cloud
-wordcloud = WordCloud(width=500, height=500, background_color='white',  collocations = False,).generate(text)
+wordcloud = WordCloud(width=200, height=200, background_color='white',  collocations = False,).generate(text)
 
 def grey_color_func(word, font_size, position,orientation,random_state=None, **kwargs):
     return("hsl(230,100%%, %d%%)" % np.random.randint(49,51))
@@ -132,7 +132,7 @@ def grey_color_func(word, font_size, position,orientation,random_state=None, **k
 wordcloud.recolor(color_func = grey_color_func)
 
 # Create a figure
-fig, ax = plt.subplots(figsize=(2, 3))  # Create a figure of size 10 inches by 5 inches
+fig, ax = plt.subplots(figsize=(5, 5))  # Create a figure of size 10 inches by 5 inches
 
 # Display the Word Cloud
 ax.imshow(wordcloud, interpolation='bilinear')  # Display the word cloud image
