@@ -142,7 +142,7 @@ st.pyplot(fig)
 # --------------------------------------------------------------------
 
 # --------------------------------------------------------------------
-# Count how many times each boolean appears in the column: has contributors
+# Count how many times each boolean appears in the column: Has data
 data_counts = df['has_data'].value_counts()
 
 # Plot pie chart using Streamlit
@@ -159,15 +159,21 @@ st.pyplot(fig)
 # --------------------------------------------------------------------
 
 # --------------------------------------------------------------------
-# Count how many times each boolean appears in the data
+# Count how many times each boolean appears in the data: Has contributors
 data_counts = df['has_contributors'].value_counts()
 
 # Plot pie chart using Streamlit
 fig, ax = plt.subplots()
 wedges, texts, autotexts = ax.pie(data_counts,
                                   labels=data_counts.index,
-                                  autopct='%1.1f%%',
-                                  startangle=90)
+                                  colors=plt.cm.tab20.colors[:len(data_counts)],  # Use tab20 colormap for colors
+                                  explode=[0.1 if value == max(data_counts) else 0 for value in data_counts],  # Explode largest slice
+                                  autopct='%.1f%%',  # Add percentages
+                                  shadow=True,  # Add shadow
+                                  startangle=90,  # Rotate start angle
+                                  textprops=dict(color="w"))  # Text color for percentages
+
+
 ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
 ax.set_title('Has Contributors')
 
