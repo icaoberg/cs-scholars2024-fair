@@ -182,10 +182,10 @@ text = '''
 ---
 References: \n
 
-*Jain, S., Pei, L., Spraggins, J.M. et al. Advances and prospects for the Human BioMolecular Atlas Program (HuBMAP). Nat Cell Biol 25, 1089–1100 (2023). https://doi.org/10.1038/s41556-023-01194-w \n
-*Wilkinson, M., Dumontier, M., Aalbersberg, I. et al. The FAIR Guiding Principles for scientific data management and stewardship. Sci Data 3, 160018 (2016). https://doi.org/10.1038/sdata.2016.18 \n
-*Bueckle A, Qing C, Luley S, Kumar Y, Pandey N and Börner K (2023) The HRA Organ Gallery affords immersive superpowers for building and exploring the Human Reference Atlas with virtual reality. Front. Bioinform. 3:1162723. doi: 10.3389/fbinf.2023.1162723 \n
-*HuBMAP Consortium. The human body at cellular resolution: the NIH Human Biomolecular Atlas Program. Nature 574, 187–192 (2019). https://doi.org/10.1038/s41586-019-1629-x \n
+* Jain, S., Pei, L., Spraggins, J.M. et al. Advances and prospects for the Human BioMolecular Atlas Program (HuBMAP). Nat Cell Biol 25, 1089–1100 (2023). https://doi.org/10.1038/s41556-023-01194-w \n
+* Wilkinson, M., Dumontier, M., Aalbersberg, I. et al. The FAIR Guiding Principles for scientific data management and stewardship. Sci Data 3, 160018 (2016). https://doi.org/10.1038/sdata.2016.18 \n
+* Bueckle A, Qing C, Luley S, Kumar Y, Pandey N and Börner K (2023) The HRA Organ Gallery affords immersive superpowers for building and exploring the Human Reference Atlas with virtual reality. Front. Bioinform. 3:1162723. doi: 10.3389/fbinf.2023.1162723 \n
+* HuBMAP Consortium. The human body at cellular resolution: the NIH Human Biomolecular Atlas Program. Nature 574, 187–192 (2019). https://doi.org/10.1038/s41586-019-1629-x \n
 
 ---
 Copyright © 2024 Carnegie Mellon University. All Rights Reserved.
