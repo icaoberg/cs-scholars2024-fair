@@ -12,7 +12,7 @@ st.image(logo_url)
 title = '# Self-assessment of HuBMAP published resources'
 st.write(title)
 
-authors = 'Prince, A. Tinajero, A. Perez, L. Ku, J. Li, X. Ricano, J. Fisher, M. Edmond, J. Mitchell, A. McLeod, A. Wong, A. Cao-Berg, I.'
+authors = 'Prince, A. Tinajero, A. Perez, L. Ku, J. Lin, X. Ricano, J. Fisher, M. Edmond, J. Mitchell, A. McLeod, A. Wong, A. Cao-Berg, I.'
 st.write(authors)
 
 today = datetime.now().strftime('%Y-%m-%d')
@@ -142,7 +142,7 @@ st.pyplot(fig)
 # --------------------------------------------------------------------
 
 # --------------------------------------------------------------------
-# Count how many times each boolean appears in the data
+# Count how many times each boolean appears in the column: has contributors
 data_counts = df['has_data'].value_counts()
 
 # Plot pie chart using Streamlit
@@ -165,7 +165,7 @@ data_counts = df['has_contributors'].value_counts()
 # Plot pie chart using Streamlit
 fig, ax = plt.subplots()
 wedges, texts, autotexts = ax.pie(data_counts,
-                                  labels=data_counts.index.map({True: 'Yes', False: 'No'}),
+                                  labels=data_counts.index,
                                   autopct='%1.1f%%',
                                   startangle=90)
 ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
