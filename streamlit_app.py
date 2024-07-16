@@ -110,11 +110,17 @@ wedges, texts, autotexts = ax.pie(top_10_value_counts,
 ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
 # Create custom legend
 legend_labels = top_10_value_counts.index.tolist()
-ax.legend(wedges, legend_labels, title="Group Names", loc="center left", bbox_to_anchor=(1, 0, 0.5, 1))
+ax.legend(wedges, 
+          legend_labels, 
+          title="Group Names", 
+          loc="center left", 
+          bbox_to_anchor=(1, 0, 0.5, 1))
 
-ax.set_title('Group Contributors')  # Add title to the pie chart
+ax.set_title('Group Contributors:\n*Only top 7 groups are represented because of their exceeding contributions*')  # Add title to the pie chart
 # Display plot using Streamlit
 st.pyplot(fig)
+
+
 # --------------------------------------------------------------------
 
 # --------------------------------------------------------------------
