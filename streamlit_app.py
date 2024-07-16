@@ -91,14 +91,14 @@ st.write(df)
 # --------------------------------------------------------------------
 # Calculate value counts and get the top 10 research group names
 value_counts = df['group_name'].value_counts()
-top_10_value_counts = value_counts.nlargest(10)
+top_10_value_counts = value_counts.nlargest(7)
 # Calculate "Others" category
-others_count = value_counts.iloc[10:].sum()
+others_count = value_counts.iloc[7:].sum()
 if others_count > 0:
     top_10_value_counts['Others'] = others_count
 
 # Plotting in Streamlit
-fig, ax = plt.subplots(figsize=(10, 8))
+fig, ax = plt.subplots(figsize=(8, 8))
 wedges, texts, autotexts = ax.pie(top_10_value_counts,
                                   autopct='%1.1f%%',  # Add percentages
                                   explode=[0.1 if value == max(top_10_value_counts) else 0 for value in top_10_value_counts],  # Explode largest slice
@@ -110,9 +110,9 @@ wedges, texts, autotexts = ax.pie(top_10_value_counts,
 ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
 # Create custom legend
 legend_labels = top_10_value_counts.index.tolist()
-ax.legend(wedges, legend_labels, title="Groups", loc="center left", bbox_to_anchor=(1, 0, 0.5, 1))
+ax.legend(wedges, legend_labels, title="Group Names", loc="center left", bbox_to_anchor=(1, 0, 0.5, 1))
 
-ax.set_title('Group names')  # Add title to the pie chart
+ax.set_title('Group Contributors')  # Add title to the pie chart
 # Display plot using Streamlit
 st.pyplot(fig)
 # --------------------------------------------------------------------
