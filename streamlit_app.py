@@ -12,8 +12,8 @@ st.image(logo_url)
 title = '# Self-assessment of HuBMAP published resources'
 st.write(title)
 
-Read_me_abstract = "The Human BioMolecular Atlas Program (HuBMAP) aims to create a comprehensive, open, and accurate map of the human body at the cellular level. This initiative addresses the critical need for high-resolution, multi-dimensional data that can enhance our understanding of human biology and disease. To see if HuBMAP data follows the FAIR (Findable, Accessible, Interoperable, Reusable) principles, we analyzed how the data is managed and shared. We looked at the standards used for metadata, how easy it is to access the data, how well the data works with other datasets, and how reusable the data is. Our review showed that HuBMAP data is fairly straightforward to find thanks to metadata and strong search tools. The data can be accessed through user-friendly platforms and APIs, making it easy for anyone to use. The data is also designed to work well with other datasets due to standardized formats. Plus, the data is highly reusable, supported by clear licensing and thorough documentation. By making data findable, accessible, interoperable, and reusable, HuBMAP helps scientific discovery and sets a high standard for other big biological data projects."
-print(Read_me_abstract)
+abstract = "The Human BioMolecular Atlas Program (HuBMAP) aims to create a comprehensive, open, and accurate map of the human body at the cellular level. This initiative addresses the critical need for high-resolution, multi-dimensional data that can enhance our understanding of human biology and disease. To see if HuBMAP data follows the FAIR (Findable, Accessible, Interoperable, Reusable) principles, we analyzed how the data is managed and shared. We looked at the standards used for metadata, how easy it is to access the data, how well the data works with other datasets, and how reusable the data is. Our review showed that HuBMAP data is fairly straightforward to find thanks to metadata and strong search tools. The data can be accessed through user-friendly platforms and APIs, making it easy for anyone to use. The data is also designed to work well with other datasets due to standardized formats. Plus, the data is highly reusable, supported by clear licensing and thorough documentation. By making data findable, accessible, interoperable, and reusable, HuBMAP helps scientific discovery and sets a high standard for other big biological data projects."
+print(abstract)
 
 authors = 'Prince, A. Tinajero, A. Perez, L. Ku, J. Li, X. Ricano, J. Fisher, M. Edmond, J. Mitchell, A. McLeod, A. Wong, A. Cao-Berg, I.'
 st.write(authors)
@@ -145,7 +145,7 @@ st.pyplot(fig)
 # --------------------------------------------------------------------
 
 # --------------------------------------------------------------------
-# Count how many times each boolean appears in the data
+# Count how many times each boolean appears in the column: Has data
 data_counts = df['has_data'].value_counts()
 
 # Plot pie chart using Streamlit
@@ -162,15 +162,21 @@ st.pyplot(fig)
 # --------------------------------------------------------------------
 
 # --------------------------------------------------------------------
-# Count how many times each boolean appears in the data
+# Count how many times each boolean appears in the data: Has contributors
 data_counts = df['has_contributors'].value_counts()
 
 # Plot pie chart using Streamlit
 fig, ax = plt.subplots()
 wedges, texts, autotexts = ax.pie(data_counts,
-                                  labels=data_counts.index.map({True: 'Yes', False: 'No'}),
-                                  autopct='%1.1f%%',
-                                  startangle=90)
+                                  labels=data_counts.index,
+                                  colors=plt.cm.tab20.colors[:len(data_counts)],  # Use tab20 colormap for colors
+                                  explode=[0.1 if value == max(data_counts) else 0 for value in data_counts],  # Explode largest slice
+                                  autopct='%.1f%%',  # Add percentages
+                                  shadow=True,  # Add shadow
+                                  startangle=90,  # Rotate start angle
+                                  textprops=dict(color="w"))  # Text color for percentages
+
+
 ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
 ax.set_title('Has Contributors')
 
