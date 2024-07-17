@@ -12,16 +12,20 @@ st.image(logo_url)
 title = '# Self-assessment of HuBMAP published resources'
 st.write(title)
 
-abstract = "The Human BioMolecular Atlas Program (HuBMAP) aims to create a comprehensive, open, and accurate map of the human body at the cellular level. This initiative addresses the critical need for high-resolution, multi-dimensional data that can enhance our understanding of human biology and disease. To see if HuBMAP data follows the FAIR (Findable, Accessible, Interoperable, Reusable) principles, we analyzed how the data is managed and shared. We looked at the standards used for metadata, how easy it is to access the data, how well the data works with other datasets, and how reusable the data is. Our review showed that HuBMAP data is fairly straightforward to find thanks to metadata and strong search tools. The data can be accessed through user-friendly platforms and APIs, making it easy for anyone to use. The data is also designed to work well with other datasets due to standardized formats. Plus, the data is highly reusable, supported by clear licensing and thorough documentation. By making data findable, accessible, interoperable, and reusable, HuBMAP helps scientific discovery and sets a high standard for other big biological data projects."
-print(abstract)
-
 authors = 'Prince, A. Tinajero, A. Perez, L. Ku, J. Li, X. Ricano, J. Fisher, M. Edmond, J. Mitchell, A. McLeod, A. Wong, A. Cao-Berg, I.'
 st.write(authors)
 
 today = datetime.now().strftime('%Y-%m-%d')
 st.write(today)
 
+abstract = '''
+## Abstract
+The Human BioMolecular Atlas Program (HuBMAP) aims to create a comprehensive, open, and accurate map of the human body at the cellular level. This initiative addresses the critical need for high-resolution, multi-dimensional data that can enhance our understanding of human biology and disease. To see if HuBMAP data follows the FAIR (Findable, Accessible, Interoperable, Reusable) principles, we analyzed how the data is managed and shared. We looked at the standards used for metadata, how easy it is to access the data, how well the data works with other datasets, and how reusable the data is. Our review showed that HuBMAP data is fairly straightforward to find thanks to metadata and strong search tools. The data can be accessed through user-friendly platforms and APIs, making it easy for anyone to use. The data is also designed to work well with other datasets due to standardized formats. Plus, the data is highly reusable, supported by clear licensing and thorough documentation. By making data findable, accessible, interoperable, and reusable, HuBMAP helps scientific discovery and sets a high standard for other big biological data projects.
+'''
+st.write(abstract)
+
 intro = '''
+## Introduction
 The Human BioMolecular Atlas Program (HuBMAP) aims to create an immersive experience of a 3D-map representation of the human body, improving access to data of the human body and developing methods for tissue interrogation applicable to other research areas. To commence its first phase, HuBMAP achieved significant highlights, including standardizing protocols, innovating imaging and sequencing techniques, and establishing reliable data. These efforts led to the creation of high-resolution molecules and of the nine major organ systems. Researchers are working together to expand the map from a 2D to a 3D environment, including factors such as age and ethnicity.
 Looking ahead, the main objective of HuBMAP is to provide freely accessible data via its online portal. The program focuses on investigating changes in individual cells and detecting diseases to prevent the harms of healthy aging. Understanding these details will help scientists develop better drugs targeting multiple organs and predict disease outcomes and progression more accurately in clinical settings. The HuBMAP production phase (2022–2026) has several goals. Additionally, it aims to generate reference datasets using new technologies, emphasizing building 3D maps and collecting data from diverse donors representing a range of demographic features (sex, race or ethnicity, and age). Its main purpose is to overcome challenges and gaps. Finally, it aims to improve metadata standards, analytical and visualization tools, and data integration and interpretation to enhance the tissue atlases of the human body through collaborative efforts.
 '''
