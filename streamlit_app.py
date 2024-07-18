@@ -200,14 +200,13 @@ st.pyplot(fig)
 # --------------------------------------------------------------------
 # Count how many times each boolean appears in the data: Has contributors
 
-# Count how many times each boolean appears in the data: Has contributors
 data_counts = df['has_contributors'].value_counts()
 
 # Plot pie chart using Streamlit
 fig, ax = plt.subplots()
 wedges, texts, autotexts = ax.pie(
-    data_counts,  # This is the data we're using — the counts of each access level
-    labels=data_counts.index,  # These are the labels for each piece of the pie, using the types of access levels
+    data_counts,  # This is the data we're using — the counts of each boolean
+    labels=data_counts.index,  # These are the labels for each piece of the pie
     autopct='%1.1f%%',  # This makes sure that each piece of the pie shows its percentage like "25.0%"
     startangle=90,  # This starts the first piece of the pie at the top of the circle
     colors=plt.cm.tab20.colors[:len(data_counts)],  # Use tab20 colormap for colors
