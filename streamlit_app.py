@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import requests
+import numpy as np
 import matplotlib.pyplot as plt
 from pprint import pprint
 from datetime import datetime
@@ -8,17 +9,25 @@ from datetime import datetime
 logo_url = 'https://hubmapconsortium.org/wp-content/uploads/2019/01/HuBMAP-Logo-Color.png'
 st.image(logo_url)
 
-title = 'FAIR Assessment of HuBMAP Data'
+title = '# Self-assessment of HuBMAP published resources'
 st.write(title)
 
 authors = 'Prince, A. Tinajero, A. Perez, L. Ku, J. Li, X. Ricano, J. Fisher, M. Edmond, J. Mitchell, A. McLeod, A. Wong, A. Cao-Berg, I.'
 st.write(authors)
 
-today = 'Today''s date'
+today = datetime.now().strftime('%Y-%m-%d')
 st.write(today)
 
+abstract = '''
+## Abstract
+The Human BioMolecular Atlas Program (HuBMAP) aims to create a comprehensive, open, and accurate map of the human body at the cellular level. This initiative addresses the critical need for high-resolution, multi-dimensional data that can enhance our understanding of human biology and disease. To see if HuBMAP data follows the FAIR (Findable, Accessible, Interoperable, Reusable) principles, we analyzed how the data is managed and shared. We looked at the standards used for metadata, how easy it is to access the data, how well the data works with other datasets, and how reusable the data is. Our review showed that HuBMAP data is fairly straightforward to find thanks to metadata and strong search tools. The data can be accessed through user-friendly platforms and APIs, making it easy for anyone to use. The data is also designed to work well with other datasets due to standardized formats. Plus, the data is highly reusable, supported by clear licensing and thorough documentation. By making data findable, accessible, interoperable, and reusable, HuBMAP helps scientific discovery and sets a high standard for other big biological data projects.
+'''
+st.write(abstract)
+
 intro = '''
-This is some text
+## Introduction
+The Human BioMolecular Atlas Program (HuBMAP) aims to create an immersive experience of a 3D-map representation of the human body, improving access to data of the human body and developing methods for tissue interrogation applicable to other research areas. To commence its first phase, HuBMAP achieved significant highlights, including standardizing protocols, innovating imaging and sequencing techniques, and establishing reliable data. These efforts led to the creation of high-resolution molecules and of the nine major organ systems. Researchers are working together to expand the map from a 2D to a 3D environment, including factors such as age and ethnicity.
+Looking ahead, the main objective of HuBMAP is to provide freely accessible data via its online portal. The program focuses on investigating changes in individual cells and detecting diseases to prevent the harms of healthy aging. Understanding these details will help scientists develop better drugs targeting multiple organs and predict disease outcomes and progression more accurately in clinical settings. The HuBMAP production phase (2022–2026) has several goals. Additionally, it aims to generate reference datasets using new technologies, emphasizing building 3D maps and collecting data from diverse donors representing a range of demographic features (sex, race or ethnicity, and age). Its main purpose is to overcome challenges and gaps. Finally, it aims to improve metadata standards, analytical and visualization tools, and data integration and interpretation to enhance the tissue atlases of the human body through collaborative efforts.
 '''
 st.write(intro)
 
@@ -86,11 +95,10 @@ st.write(text)
 #print table
 st.write(df)
 
+# --------------------------------------------------------------------
 # Calculate value counts and get the top 10 research group names
 value_counts = df['group_name'].value_counts()
 top_10_value_counts = value_counts.nlargest(10)
-
-# --------------------------------------------------------------------
 # Calculate "Others" category
 others_count = value_counts.iloc[10:].sum()
 if others_count > 0:
@@ -107,18 +115,47 @@ wedges, texts, autotexts = ax.pie(top_10_value_counts,
                                   textprops=dict(color="w"))  # Text color for percentages
 
 ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+# Create custom legend
+legend_labels = top_10_value_counts.index.tolist()
+ax.legend(wedges, legend_labels, title="Groups", loc="center left", bbox_to_anchor=(1, 0, 0.5, 1))
+
 ax.set_title('Group names')  # Add title to the pie chart
 # Display plot using Streamlit
 st.pyplot(fig)
+# --------------------------------------------------------------------
 
-#has_data plot------------------------------------------------
-# Count how many times each boolean appears in the data
+# --------------------------------------------------------------------
+from wordcloud import WordCloud
+
+text = ' '.join(df['group_name'].str.replace(' ', '_').tolist())
+
+# Create the Word Cloud
+wordcloud = WordCloud(width=200, height=200, background_color='white',  collocations = False,).generate(text)
+
+def grey_color_func(word, font_size, position,orientation,random_state=None, **kwargs):
+    return("hsl(230,100%%, %d%%)" % np.random.randint(49,51))
+
+#change the color setting
+wordcloud.recolor(color_func = grey_color_func)
+
+# Create a figure
+fig, ax = plt.subplots(figsize=(25, 25))  # Create a figure of size 10 inches by 5 inches
+
+# Display the Word Cloud
+ax.imshow(wordcloud, interpolation='bilinear')  # Display the word cloud image
+ax.axis("off")  # Turn off the axis because we don't need it for the word cloud
+# Display plot using Streamlit
+st.pyplot(fig)
+# --------------------------------------------------------------------
+
+# --------------------------------------------------------------------
+# Count how many times each boolean appears in the column: Has data
 data_counts = df['has_data'].value_counts()
 
 # Plot pie chart using Streamlit
 fig, ax = plt.subplots()
 wedges, texts, autotexts = ax.pie(data_counts,
-                                  labels=data_counts.index.map({True: 'Yes', False: 'No'}),
+                                  labels=data_counts.index,
                                   autopct='%1.1f%%',
                                   startangle=90)
 ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
@@ -126,28 +163,35 @@ ax.set_title('Has data')
 
 # Display the plot in Streamlit
 st.pyplot(fig)
-#-----------------------------------------------------------
+# --------------------------------------------------------------------
 
-#has_contributors plot----------------------------------------------
-# Count how many times each boolean appears in the data
+# --------------------------------------------------------------------
+# Count how many times each boolean appears in the data: Has contributors
 data_counts = df['has_contributors'].value_counts()
 
 # Plot pie chart using Streamlit
 fig, ax = plt.subplots()
 wedges, texts, autotexts = ax.pie(data_counts,
-                                  labels=data_counts.index.map({True: 'Yes', False: 'No'}),
-                                  autopct='%1.1f%%',
-                                  startangle=90)
+                                  labels=data_counts.index,
+                                  colors=plt.cm.tab20.colors[:len(data_counts)],  # Use tab20 colormap for colors
+                                  explode=[0.1 if value == max(data_counts) else 0 for value in data_counts],  # Explode largest slice
+                                  autopct='%.1f%%',  # Add percentages
+                                  shadow=True,  # Add shadow
+                                  startangle=90,  # Rotate start angle
+                                  textprops=dict(color="w"))  # Text color for percentages
+
+
 ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
 ax.set_title('Has Contributors')
 
 # Display the plot in Streamlit
 st.pyplot(fig)
-#-----------------------------------------------------------
+# --------------------------------------------------------------------
 
 text = '### Data access level'
 st.write(text)
 
+# --------------------------------------------------------------------
 # Count how many times each access level appears in the data
 data_counts = df['data_access_level'].value_counts()
 
@@ -167,6 +211,7 @@ ax.set_title('Distribution of Data Access Levels')
 
 # Display the plot in Streamlit
 st.pyplot(fig)
+# --------------------------------------------------------------------
 
 text = '### Dataset types'
 st.write(text)
