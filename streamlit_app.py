@@ -107,9 +107,10 @@ st.write(df)
 # --------------------------------------------------------------------
 # Calculate value counts and get the top 10 research group names
 value_counts = df["group_name"].value_counts()
-top_10_value_counts = value_counts.nlargest(10)
+top_10_value_counts = value_counts.nlargest(7)
+
 # Calculate "Others" category
-others_count = value_counts.iloc[10:].sum()
+others_count = value_counts.iloc[7:].sum()
 if others_count > 0:
     top_10_value_counts["Others"] = others_count
 
