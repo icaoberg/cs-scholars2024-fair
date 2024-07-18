@@ -14,7 +14,7 @@ st.image(logo_url)
 title = "# Self-assessment of HuBMAP published resources"
 st.write(title)
 
-authors = "Prince, A. Tinajero, A. Perez, L. Ku, J. Li, X. Ricano, J. Fisher, M. Edmond, J. Mitchell, A. McLeod, A. Wong, A. Cao-Berg, I."
+authors = "Prince, A. Tinajero, A. Perez, L. Ku, J. Lin, X. Ricano, J. Fisher, M. Edmond, J. Mitchell, A. McLeod, A. Wong, A. Cao-Berg, I."
 st.write(authors)
 
 today = datetime.now().strftime("%Y-%m-%d")
@@ -199,26 +199,25 @@ st.pyplot(fig)
 
 # --------------------------------------------------------------------
 # Count how many times each boolean appears in the data: Has contributors
-data_counts = df["has_contributors"].value_counts()
+
+# Count how many times each boolean appears in the data: Has contributors
+data_counts = df['has_contributors'].value_counts()
 
 # Plot pie chart using Streamlit
 fig, ax = plt.subplots()
 wedges, texts, autotexts = ax.pie(
-    data_counts,
-    labels=data_counts.index,
-    colors=plt.cm.tab20.colors[: len(data_counts)],  # Use tab20 colormap for colors
-    explode=[
-        0.1 if value == max(data_counts) else 0 for value in data_counts
-    ],  # Explode largest slice
-    autopct="%.1f%%",  # Add percentages
+    data_counts,  # This is the data we're using — the counts of each access level
+    labels=data_counts.index,  # These are the labels for each piece of the pie, using the types of access levels
+    autopct='%1.1f%%',  # This makes sure that each piece of the pie shows its percentage like "25.0%"
+    startangle=90,  # This starts the first piece of the pie at the top of the circle
+    colors=plt.cm.tab20.colors[:len(data_counts)],  # Use tab20 colormap for colors
+    explode=[0.1 if value == max(data_counts) else 0 for value in data_counts],  # Explode largest slice
     shadow=True,  # Add shadow
-    startangle=90,  # Rotate start angle
-    textprops=dict(color="w"),
-)  # Text color for percentages
+)
 
 
-ax.axis("equal")  # Equal aspect ratio ensures that pie is drawn as a circle.
-ax.set_title("Has Contributors")
+ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+ax.set_title('Percentage of Datasets That Has Contributors')
 
 # Display the plot in Streamlit
 st.pyplot(fig)
